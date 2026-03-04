@@ -27,7 +27,7 @@ resource "azurerm_network_security_group" "nsg_app" {
 
 # 2. On crée une règle spécifique pour autoriser le HTTP (Port 80)
 resource "azurerm_network_security_rule" "allow_http" {
-name                        = "AllowHTTP"
+  name                        = "AllowHTTP"
   priority                    = 100
   direction                   = "Inbound"
   access                      = "Allow"
