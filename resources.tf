@@ -3,7 +3,7 @@ resource "azurerm_resource_group" "rg_app" {
   location = "westeurope"
 }
 
-# --- NOUVEAU CODE À AJOUTER ---
+
 resource "azurerm_virtual_network" "vnet_app" {
   name = "vnet-ma-super-application"
   # Remarque la magie d'IaC : on ne tape pas le nom à la main, 
