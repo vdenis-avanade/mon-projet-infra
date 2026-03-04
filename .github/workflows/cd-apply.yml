@@ -1,24 +1,22 @@
-name: "Terraform CI/CD"
+name: "Terraform CD (Apply)"
 
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
+# La fameuse file d'attente pour éviter l'erreur "State Locked" !
 concurrency:
   group: terraform-state-lock
   cancel-in-progress: false
-  
+
 permissions:
-  id-token: write   # Required for OIDC
+  id-token: write
   contents: read
 
 jobs:
-  terraform:
-    name: "Terraform"
+  apply:
+    name: "Apply"
     runs-on: ubuntu-latest
-
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
@@ -29,7 +27,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Azure Login (OIDC)
+      - name: Azure Login
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
@@ -42,15 +40,5 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Format Check
-        run: terraform fmt -check
-
-      - name: Terraform Validate
-        run: terraform validate
-
-      - name: Terraform Plan
-        run: terraform plan -out=tfplan
-
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve tfplan
+        run: terraform apply -auto-approve
