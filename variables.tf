@@ -1,27 +1,21 @@
 variable "resource_group_name" {
-  description = "Nom du groupe de ressources"
   type        = string
-  default     = "rg-ma-super-application"
+  description = "Nom du groupe de ressources"
 }
 
 variable "location" {
-  description = "Région Azure pour le déploiement"
   type        = string
-  default     = "westeurope"
+  description = "Région Azure"
 }
 
 variable "vnet_address_space" {
-  description = "Espace d'adressage du VNet"
-  type        = list(string)
-  default     = ["10.0.0.0/16"]
+  type = list(string)
 }
 
 variable "nsg_name" {
-  type    = string
-  default = "nsg-frontend"
+  type = string
 }
 
 variable "http_port" {
-  type    = number
-  default = 80
+  type = number
 }
