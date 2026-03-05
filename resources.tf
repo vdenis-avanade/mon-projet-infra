@@ -111,7 +111,7 @@ resource "azurerm_linux_virtual_machine" "vm_app" {
   name                = var.vm_name
   resource_group_name = azurerm_resource_group.rg_app.name
   location            = azurerm_resource_group.rg_app.location
-  size                = "Standard_B1s" # Une petite taille pas chère
+  size                = "Standard_B2ts_v2"
   admin_username      = var.admin_username
   network_interface_ids = [
     azurerm_network_interface.nic_app.id,
