@@ -61,7 +61,7 @@ resource "azurerm_public_ip" "pip_app" {
   name                = "pip-app"
   location            = azurerm_resource_group.rg_app.location
   resource_group_name = azurerm_resource_group.rg_app.name
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
 }
 
 
