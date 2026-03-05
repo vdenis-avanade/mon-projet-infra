@@ -19,3 +19,14 @@ variable "nsg_name" {
 variable "http_port" {
   type = number
 }
+
+variable "vm_name" {
+  type        = string
+  description = "Nom de la machine virtuelle"
+}
+
+variable "admin_username" {
+  type        = string
+  description = "Nom d'utilisateur administrateur"
+  default     = "azureuser"
+}
